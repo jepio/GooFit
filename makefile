@@ -13,5 +13,9 @@ all: libGooCommon.so
 libGooCommon.so: $(objs)
 	nvcc -shared $^ -o $@
 
+include rootstuff/Makefile
+include PDFs/makefile
+
+clean: cmd += rm -rf $(objs) libGooCommon.so
 clean:
-	@rm -rf $(objs)
+	$(cmd)
