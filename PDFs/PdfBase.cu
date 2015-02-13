@@ -1,11 +1,13 @@
 #include "PdfBase.hh"
 
-// This is code that belongs to the PdfBase class, that is, 
-// it is common across all implementations. But it calls on device-side
-// functions, and due to the nvcc translation-unit limitations, it cannot
-// sit in its own object file; it must go in the CUDAglob.cu. So it's
-// off on its own in this inline-cuda file, which GooPdf.cu 
-// should include. 
+
+// Device-side, translation-unit constrained. 
+MEM_CONSTANT fptype cudaArray[maxParams];           // Holds device-side fit parameters. 
+MEM_CONSTANT unsigned int paramIndices[maxParams];  // Holds functor-specific indices into cudaArray. Also overloaded to hold integer constants (ie parameters that cannot vary.) 
+MEM_CONSTANT fptype functorConstants[maxParams];    // Holds non-integer constants. Notice that first entry is number of events. 
+MEM_CONSTANT fptype normalisationFactors[maxParams]; 
+
+MEM_DEVICE void* device_function_table[200]; // Not clear why this cannot be MEM_CONSTANT, but it causes crashes to declare it so. 
 
 #ifdef CUDAPRINT
 __host__ void PdfBase::copyParams (const std::vector<double>& pars) const {

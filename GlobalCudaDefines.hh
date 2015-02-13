@@ -63,7 +63,9 @@ gooError gooFree (void* ptr);
 
 #define DOUBLES 1
 
-void abortWithCudaPrintFlush (std::string file, int line); 
+class PdfBase;
+// needs forward declaration of PdfBase
+void abortWithCudaPrintFlush (std::string file, int line, std::string reason, const PdfBase* pdf=0); 
 
 #ifdef DOUBLES
 #define root2 1.4142135623730951

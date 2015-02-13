@@ -1,4 +1,5 @@
 #include "PolynomialPdf.hh"
+#include <stdio.h>
 
 EXEC_TARGET fptype device_Polynomial (fptype* evt, fptype* p, unsigned int* indices) {
   // Structure is nP lowestdegree c1 c2 c3 nO o1

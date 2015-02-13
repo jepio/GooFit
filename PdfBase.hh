@@ -104,5 +104,17 @@ private:
   __host__ void setIndices ();
 };
 
+// Functions/arrays formerly defined in GooPdf.cu
+//
+EXEC_TARGET fptype callFunction(fptype* eventAddress, 
+                                unsigned int functionIdx, 
+                                unsigned int paramIdx);
+
+extern MEM_CONSTANT fptype normalisationFactors[maxParams];
+extern MEM_CONSTANT fptype functorConstants[maxParams];
+extern MEM_CONSTANT unsigned int paramIndices[maxParams];
+extern MEM_CONSTANT fptype cudaArray[maxParams];
+extern MEM_DEVICE void* device_function_table[200];
+void* getMetricPointer(std::string name);
 
 #endif
